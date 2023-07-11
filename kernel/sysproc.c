@@ -89,3 +89,13 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// get the command line parameters and save them in the
+// proc structure
+uint64 sys_trace(void)
+{
+  int mask_;
+  argint(0, &mask_);
+  myproc()->mask = mask_;
+  return 0;
+}
