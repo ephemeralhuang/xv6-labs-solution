@@ -1,11 +1,10 @@
 #include "types.h"
 #include "riscv.h"
-#include "defs.h"
 #include "param.h"
+#include "defs.h"
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
-#include "sysinfo.h"
 
 uint64
 sys_exit(void)
@@ -55,6 +54,7 @@ sys_sleep(void)
   int n;
   uint ticks0;
 
+
   argint(0, &n);
   acquire(&tickslock);
   ticks0 = ticks;
@@ -68,6 +68,37 @@ sys_sleep(void)
   release(&tickslock);
   return 0;
 }
+
+
+#ifdef LAB_PGTBL
+int
+sys_pgaccess(void)
+{
+  uint64 va;
+  int pagenum;
+  uint64 abitsaddr;
+  argaddr(0, &va);
+  argint(1, &pagenum);
+  argaddr(2, &abitsaddr);
+
+  uint64 maskbits = 0;
+  struct proc *proc = myproc();
+  for (int i = 0; i < pagenum; i++) {
+    pte_t *pte = walk(proc->pagetable, va+i*PGSIZE, 0);
+    if (pte == 0)
+      panic("page not exist.");
+    if (PTE_FLAGS(*pte) & PTE_A) {
+      maskbits = maskbits | (1L << i);
+    }
+    // clear PTE_A, set PTE_A bits zero
+    *pte = ((*pte&PTE_A) ^ *pte) ^ 0 ;
+  }
+  if (copyout(proc->pagetable, abitsaddr, (char *)&maskbits, sizeof(maskbits)) < 0)
+    panic("sys_pgacess copyout error");
+
+  return 0;
+}
+#endif
 
 uint64
 sys_kill(void)
@@ -89,34 +120,4 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
-}
-
-// get the command line parameters and save them in the
-// proc structure
-uint64 sys_trace(void)
-{
-  int mask_;
-  argint(0, &mask_);
-  myproc()->mask = mask_;
-  return 0;
-}
-
-uint64 sys_sysinfo(void)
-{
-  uint64 in_addr;
-  struct sysinfo sysinfo_;
-  argaddr(0, &in_addr);
-
-  uint64 free_mems = get_free_mem();
-  uint64 nproc_ = get_unused_procs();
-  
-  sysinfo_.freemem = free_mems;
-  sysinfo_.nproc = nproc_;
-
-  if(copyout(myproc()->pagetable, in_addr, (char *)&sysinfo_, sizeof(sysinfo_)) < 0)
-  {
-    return -1;
-  }
-  return 0;
-
 }

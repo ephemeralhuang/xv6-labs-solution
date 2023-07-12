@@ -21,7 +21,7 @@ kvmmake(void)
 {
   pagetable_t kpgtbl;
 
-  kpgtbl = (pagetable_t) kalloc(); //physical
+  kpgtbl = (pagetable_t) kalloc();
   memset(kpgtbl, 0, PGSIZE);
 
   // uart registers
@@ -438,54 +438,27 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
   }
 }
 
-//static int printdeep = 0;
+static int printdeep = 0;
 
 void
 vmprint(pagetable_t pagetable)
 {
-  // if (printdeep == 0)
-  //   printf("page table %p\n", (uint64)pagetable);
-  // for (int i = 0; i < 512; i++) {
-  //   pte_t pte = pagetable[i];
-  //   if (pte & PTE_V) {
-  //     for (int j = 0; j <= printdeep; j++) {
-  //       printf("..");
-  //     }
-  //     printf("%d: pte %p pa %p\n", i, (uint64)pte, (uint64)PTE2PA(pte));
-  //   }
-  //   // pintes to lower-level page table
-  //   if((pte & PTE_V) && (pte & (PTE_R|PTE_W|PTE_X)) == 0){
-  //     printdeep++;
-  //     uint64 child_pa = PTE2PA(pte);
-  //     vmprint((pagetable_t)child_pa);
-  //     printdeep--;
-  //   }
-  // }
-  printf("page table %p\n", pagetable);
-  print_ptes(pagetable, 0);
-}
-
-void print_ptes(pagetable_t pagetable, int level)
-{
-  if(level >= 3) return;
-  for (int i = 0; i < 512; i++)
-  {
-    /* code */
+  if (printdeep == 0)
+    printf("page table %p\n", (uint64)pagetable);
+  for (int i = 0; i < 512; i++) {
     pte_t pte = pagetable[i];
-    if (pte & PTE_V)
-    {
-      /* code */
-      for (int j = 0; j < level; j++)
-      {
-        /* code */
-        printf(".. ");
+    if (pte & PTE_V) {
+      for (int j = 0; j <= printdeep; j++) {
+        printf("..");
       }
-      uint64 PNN = PTE2PA(pte);
-      printf("..%d: pte %p pa %p\n", i, (uint64)pte, PNN);
-      level++;
-      print_ptes((pagetable_t)PNN, level);
-      level--;
+      printf("%d: pte %p pa %p\n", i, (uint64)pte, (uint64)PTE2PA(pte));
+    }
+    // pintes to lower-level page table
+    if((pte & PTE_V) && (pte & (PTE_R|PTE_W|PTE_X)) == 0){
+      printdeep++;
+      uint64 child_pa = PTE2PA(pte);
+      vmprint((pagetable_t)child_pa);
+      printdeep--;
     }
   }
-  
 }
