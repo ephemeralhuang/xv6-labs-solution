@@ -133,3 +133,19 @@ printfinit(void)
   initlock(&pr.lock, "pr");
   pr.locking = 1;
 }
+
+void backtrace()
+{
+  uint64 now_fp = r_fp();
+  uint64 fram_up = PGROUNDUP(now_fp);
+  // printf("fp = %p\n", now_fp);
+  while (now_fp != fram_up)
+  {
+    /* code */
+    printf("ra = %p\n", *(uint64*)(now_fp-8));
+    //printf("fp = %p\n", *(uint64*)(now_fp-16));
+
+    now_fp = *(uint64*)(now_fp-16);
+  }
+  
+}

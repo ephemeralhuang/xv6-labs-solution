@@ -54,6 +54,7 @@ sys_sleep(void)
   int n;
   uint ticks0;
 
+  backtrace();
 
   argint(0, &n);
   acquire(&tickslock);
@@ -71,32 +72,42 @@ sys_sleep(void)
 
 
 #ifdef LAB_PGTBL
+#define MAXSCANNEDPAGES 64
 int
 sys_pgaccess(void)
 {
   uint64 va;
-  int pagenum;
-  uint64 abitsaddr;
-  argaddr(0, &va);
-  argint(1, &pagenum);
-  argaddr(2, &abitsaddr);
+  argaddr(0,&va);
 
-  uint64 maskbits = 0;
-  struct proc *proc = myproc();
-  for (int i = 0; i < pagenum; i++) {
-    pte_t *pte = walk(proc->pagetable, va+i*PGSIZE, 0);
-    if (pte == 0)
+  int npages;
+  argint(1, &npages);
+
+  uint64 mask_addr;
+
+  argaddr(2, &mask_addr);
+
+  struct proc* p = myproc();
+  pagetable_t pagetable = p->pagetable;
+
+  va = PGROUNDDOWN(va);
+  uint64 bits = 0;
+  for (int j =0; j < npages; j++)
+  {
+    /* code */
+    pte_t *pte = walk(pagetable, va+j*PGSIZE, 0);
+    if(pte == 0)
       panic("page not exist.");
-    if (PTE_FLAGS(*pte) & PTE_A) {
-      maskbits = maskbits | (1L << i);
+    if (PTE_FLAGS(*pte) & PTE_A)
+    {
+      /* code */
+      bits = bits | (1L << j);
     }
-    // clear PTE_A, set PTE_A bits zero
-    *pte = ((*pte&PTE_A) ^ *pte) ^ 0 ;
+    *pte = *pte & ~PTE_A;
   }
-  if (copyout(proc->pagetable, abitsaddr, (char *)&maskbits, sizeof(maskbits)) < 0)
-    panic("sys_pgacess copyout error");
-
+  
+  copyout(pagetable,mask_addr, (char *)&bits, sizeof(bits));
   return 0;
+
 }
 #endif
 
@@ -120,4 +131,28 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+uint64 sys_sigalarm()
+{
+  int ticks;
+  uint64 handler_va;
+
+  argint(0, &ticks);
+  argaddr(1, &handler_va);
+  struct proc* proc = myproc();
+
+  proc->alarm_interval = ticks;
+  proc->handler_va = handler_va;
+  proc->have_return = 1;
+  return 0;
+}
+
+uint64 sys_sigreturn()
+{
+  struct proc* proc = myproc();
+
+  *proc->trapframe = proc->saved_trapframe;
+  proc->have_return = 1;
+  return proc->trapframe->a0;
 }

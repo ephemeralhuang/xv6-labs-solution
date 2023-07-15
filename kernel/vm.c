@@ -438,6 +438,7 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
   }
 }
 
+#ifdef LAB_PGTBL
 static int printdeep = 0;
 
 void
@@ -462,3 +463,4 @@ vmprint(pagetable_t pagetable)
     }
   }
 }
+#endif

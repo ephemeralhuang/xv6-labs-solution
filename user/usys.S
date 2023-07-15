@@ -115,3 +115,13 @@ pgaccess:
  li a7, SYS_pgaccess
  ecall
  ret
+.global sigalarm
+sigalarm:
+ li a7, SYS_sigalarm
+ ecall
+ ret
+.global sigreturn
+sigreturn:
+ li a7, SYS_sigreturn
+ ecall
+ ret
