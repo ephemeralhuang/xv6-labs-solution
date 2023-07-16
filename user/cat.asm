@@ -28,7 +28,7 @@ cat(int fd)
   1c:	85ca                	mv	a1,s2
   1e:	854e                	mv	a0,s3
   20:	00000097          	auipc	ra,0x0
-  24:	3b2080e7          	jalr	946(ra) # 3d2 <read>
+  24:	39c080e7          	jalr	924(ra) # 3bc <read>
   28:	84aa                	mv	s1,a0
   2a:	02a05963          	blez	a0,5c <cat+0x5c>
     if (write(1, buf, n) != n) {
@@ -36,18 +36,18 @@ cat(int fd)
   30:	85ca                	mv	a1,s2
   32:	4505                	li	a0,1
   34:	00000097          	auipc	ra,0x0
-  38:	3a6080e7          	jalr	934(ra) # 3da <write>
+  38:	390080e7          	jalr	912(ra) # 3c4 <write>
   3c:	fc950ee3          	beq	a0,s1,18 <cat+0x18>
       fprintf(2, "cat: write error\n");
   40:	00001597          	auipc	a1,0x1
-  44:	8b058593          	addi	a1,a1,-1872 # 8f0 <malloc+0xf4>
+  44:	89058593          	addi	a1,a1,-1904 # 8d0 <malloc+0xea>
   48:	4509                	li	a0,2
   4a:	00000097          	auipc	ra,0x0
-  4e:	6cc080e7          	jalr	1740(ra) # 716 <fprintf>
+  4e:	6b6080e7          	jalr	1718(ra) # 700 <fprintf>
       exit(1);
   52:	4505                	li	a0,1
   54:	00000097          	auipc	ra,0x0
-  58:	366080e7          	jalr	870(ra) # 3ba <exit>
+  58:	350080e7          	jalr	848(ra) # 3a4 <exit>
     }
   }
   if(n < 0){
@@ -65,14 +65,14 @@ cat(int fd)
   6c:	8082                	ret
     fprintf(2, "cat: read error\n");
   6e:	00001597          	auipc	a1,0x1
-  72:	89a58593          	addi	a1,a1,-1894 # 908 <malloc+0x10c>
+  72:	87a58593          	addi	a1,a1,-1926 # 8e8 <malloc+0x102>
   76:	4509                	li	a0,2
   78:	00000097          	auipc	ra,0x0
-  7c:	69e080e7          	jalr	1694(ra) # 716 <fprintf>
+  7c:	688080e7          	jalr	1672(ra) # 700 <fprintf>
     exit(1);
   80:	4505                	li	a0,1
   82:	00000097          	auipc	ra,0x0
-  86:	338080e7          	jalr	824(ra) # 3ba <exit>
+  86:	322080e7          	jalr	802(ra) # 3a4 <exit>
 
 000000000000008a <main>:
 
@@ -107,7 +107,7 @@ main(int argc, char *argv[])
   b4:	4581                	li	a1,0
   b6:	00093503          	ld	a0,0(s2) # 1010 <buf>
   ba:	00000097          	auipc	ra,0x0
-  be:	340080e7          	jalr	832(ra) # 3fa <open>
+  be:	32a080e7          	jalr	810(ra) # 3e4 <open>
   c2:	84aa                	mv	s1,a0
   c4:	02054d63          	bltz	a0,fe <main+0x74>
       fprintf(2, "cat: cannot open %s\n", argv[i]);
@@ -119,7 +119,7 @@ main(int argc, char *argv[])
     close(fd);
   d0:	8526                	mv	a0,s1
   d2:	00000097          	auipc	ra,0x0
-  d6:	310080e7          	jalr	784(ra) # 3e2 <close>
+  d6:	2fa080e7          	jalr	762(ra) # 3cc <close>
   for(i = 1; i < argc; i++){
   da:	0921                	addi	s2,s2,8
   dc:	fd391ce3          	bne	s2,s3,b4 <main+0x2a>
@@ -127,7 +127,7 @@ main(int argc, char *argv[])
   exit(0);
   e0:	4501                	li	a0,0
   e2:	00000097          	auipc	ra,0x0
-  e6:	2d8080e7          	jalr	728(ra) # 3ba <exit>
+  e6:	2c2080e7          	jalr	706(ra) # 3a4 <exit>
     cat(0);
   ea:	4501                	li	a0,0
   ec:	00000097          	auipc	ra,0x0
@@ -135,18 +135,18 @@ main(int argc, char *argv[])
     exit(0);
   f4:	4501                	li	a0,0
   f6:	00000097          	auipc	ra,0x0
-  fa:	2c4080e7          	jalr	708(ra) # 3ba <exit>
+  fa:	2ae080e7          	jalr	686(ra) # 3a4 <exit>
       fprintf(2, "cat: cannot open %s\n", argv[i]);
   fe:	00093603          	ld	a2,0(s2)
- 102:	00001597          	auipc	a1,0x1
- 106:	81e58593          	addi	a1,a1,-2018 # 920 <malloc+0x124>
+ 102:	00000597          	auipc	a1,0x0
+ 106:	7fe58593          	addi	a1,a1,2046 # 900 <malloc+0x11a>
  10a:	4509                	li	a0,2
  10c:	00000097          	auipc	ra,0x0
- 110:	60a080e7          	jalr	1546(ra) # 716 <fprintf>
+ 110:	5f4080e7          	jalr	1524(ra) # 700 <fprintf>
       exit(1);
  114:	4505                	li	a0,1
  116:	00000097          	auipc	ra,0x0
- 11a:	2a4080e7          	jalr	676(ra) # 3ba <exit>
+ 11a:	28e080e7          	jalr	654(ra) # 3a4 <exit>
 
 000000000000011e <_main>:
 //
@@ -166,7 +166,7 @@ _main()
   exit(0);
  12e:	4501                	li	a0,0
  130:	00000097          	auipc	ra,0x0
- 134:	28a080e7          	jalr	650(ra) # 3ba <exit>
+ 134:	274080e7          	jalr	628(ra) # 3a4 <exit>
 
 0000000000000138 <strcpy>:
 }
@@ -348,7 +348,7 @@ gets(char *buf, int max)
  21c:	faf40593          	addi	a1,s0,-81
  220:	4501                	li	a0,0
  222:	00000097          	auipc	ra,0x0
- 226:	1b0080e7          	jalr	432(ra) # 3d2 <read>
+ 226:	19a080e7          	jalr	410(ra) # 3bc <read>
     if(cc < 1)
  22a:	00a05e63          	blez	a0,246 <gets+0x56>
     buf[i++] = c;
@@ -400,7 +400,7 @@ stat(const char *n, struct stat *st)
   fd = open(n, O_RDONLY);
  272:	4581                	li	a1,0
  274:	00000097          	auipc	ra,0x0
- 278:	186080e7          	jalr	390(ra) # 3fa <open>
+ 278:	170080e7          	jalr	368(ra) # 3e4 <open>
   if(fd < 0)
  27c:	02054563          	bltz	a0,2a6 <stat+0x42>
  280:	84aa                	mv	s1,a0
@@ -408,12 +408,12 @@ stat(const char *n, struct stat *st)
   r = fstat(fd, st);
  282:	85ca                	mv	a1,s2
  284:	00000097          	auipc	ra,0x0
- 288:	18e080e7          	jalr	398(ra) # 412 <fstat>
+ 288:	178080e7          	jalr	376(ra) # 3fc <fstat>
  28c:	892a                	mv	s2,a0
   close(fd);
  28e:	8526                	mv	a0,s1
  290:	00000097          	auipc	ra,0x0
- 294:	152080e7          	jalr	338(ra) # 3e2 <close>
+ 294:	13c080e7          	jalr	316(ra) # 3cc <close>
   return r;
 }
  298:	854a                	mv	a0,s2
@@ -586,884 +586,864 @@ memcpy(void *dst, const void *src, uint n)
  398:	0141                	addi	sp,sp,16
  39a:	8082                	ret
 
-000000000000039c <ugetpid>:
-
-#ifdef LAB_PGTBL
-int
-ugetpid(void)
-{
- 39c:	1141                	addi	sp,sp,-16
- 39e:	e422                	sd	s0,8(sp)
- 3a0:	0800                	addi	s0,sp,16
-  struct usyscall *u = (struct usyscall *)USYSCALL;
-  return u->pid;
- 3a2:	040007b7          	lui	a5,0x4000
-}
- 3a6:	17f5                	addi	a5,a5,-3 # 3fffffd <base+0x3ffeded>
- 3a8:	07b2                	slli	a5,a5,0xc
- 3aa:	4388                	lw	a0,0(a5)
- 3ac:	6422                	ld	s0,8(sp)
- 3ae:	0141                	addi	sp,sp,16
- 3b0:	8082                	ret
-
-00000000000003b2 <fork>:
+000000000000039c <fork>:
 # generated by usys.pl - do not edit
 #include "kernel/syscall.h"
 .global fork
 fork:
  li a7, SYS_fork
- 3b2:	4885                	li	a7,1
+ 39c:	4885                	li	a7,1
  ecall
- 3b4:	00000073          	ecall
+ 39e:	00000073          	ecall
  ret
- 3b8:	8082                	ret
+ 3a2:	8082                	ret
 
-00000000000003ba <exit>:
+00000000000003a4 <exit>:
 .global exit
 exit:
  li a7, SYS_exit
- 3ba:	4889                	li	a7,2
+ 3a4:	4889                	li	a7,2
  ecall
- 3bc:	00000073          	ecall
+ 3a6:	00000073          	ecall
  ret
- 3c0:	8082                	ret
+ 3aa:	8082                	ret
 
-00000000000003c2 <wait>:
+00000000000003ac <wait>:
 .global wait
 wait:
  li a7, SYS_wait
- 3c2:	488d                	li	a7,3
+ 3ac:	488d                	li	a7,3
  ecall
- 3c4:	00000073          	ecall
+ 3ae:	00000073          	ecall
  ret
- 3c8:	8082                	ret
+ 3b2:	8082                	ret
 
-00000000000003ca <pipe>:
+00000000000003b4 <pipe>:
 .global pipe
 pipe:
  li a7, SYS_pipe
- 3ca:	4891                	li	a7,4
+ 3b4:	4891                	li	a7,4
  ecall
- 3cc:	00000073          	ecall
+ 3b6:	00000073          	ecall
  ret
- 3d0:	8082                	ret
+ 3ba:	8082                	ret
 
-00000000000003d2 <read>:
+00000000000003bc <read>:
 .global read
 read:
  li a7, SYS_read
- 3d2:	4895                	li	a7,5
+ 3bc:	4895                	li	a7,5
  ecall
- 3d4:	00000073          	ecall
+ 3be:	00000073          	ecall
  ret
- 3d8:	8082                	ret
+ 3c2:	8082                	ret
 
-00000000000003da <write>:
+00000000000003c4 <write>:
 .global write
 write:
  li a7, SYS_write
- 3da:	48c1                	li	a7,16
+ 3c4:	48c1                	li	a7,16
  ecall
- 3dc:	00000073          	ecall
+ 3c6:	00000073          	ecall
  ret
- 3e0:	8082                	ret
+ 3ca:	8082                	ret
 
-00000000000003e2 <close>:
+00000000000003cc <close>:
 .global close
 close:
  li a7, SYS_close
- 3e2:	48d5                	li	a7,21
+ 3cc:	48d5                	li	a7,21
  ecall
- 3e4:	00000073          	ecall
+ 3ce:	00000073          	ecall
  ret
- 3e8:	8082                	ret
+ 3d2:	8082                	ret
 
-00000000000003ea <kill>:
+00000000000003d4 <kill>:
 .global kill
 kill:
  li a7, SYS_kill
- 3ea:	4899                	li	a7,6
+ 3d4:	4899                	li	a7,6
  ecall
- 3ec:	00000073          	ecall
+ 3d6:	00000073          	ecall
  ret
- 3f0:	8082                	ret
+ 3da:	8082                	ret
 
-00000000000003f2 <exec>:
+00000000000003dc <exec>:
 .global exec
 exec:
  li a7, SYS_exec
- 3f2:	489d                	li	a7,7
+ 3dc:	489d                	li	a7,7
  ecall
- 3f4:	00000073          	ecall
+ 3de:	00000073          	ecall
  ret
- 3f8:	8082                	ret
+ 3e2:	8082                	ret
 
-00000000000003fa <open>:
+00000000000003e4 <open>:
 .global open
 open:
  li a7, SYS_open
- 3fa:	48bd                	li	a7,15
+ 3e4:	48bd                	li	a7,15
  ecall
- 3fc:	00000073          	ecall
+ 3e6:	00000073          	ecall
  ret
- 400:	8082                	ret
+ 3ea:	8082                	ret
 
-0000000000000402 <mknod>:
+00000000000003ec <mknod>:
 .global mknod
 mknod:
  li a7, SYS_mknod
- 402:	48c5                	li	a7,17
+ 3ec:	48c5                	li	a7,17
  ecall
- 404:	00000073          	ecall
+ 3ee:	00000073          	ecall
  ret
- 408:	8082                	ret
+ 3f2:	8082                	ret
 
-000000000000040a <unlink>:
+00000000000003f4 <unlink>:
 .global unlink
 unlink:
  li a7, SYS_unlink
- 40a:	48c9                	li	a7,18
+ 3f4:	48c9                	li	a7,18
  ecall
- 40c:	00000073          	ecall
+ 3f6:	00000073          	ecall
  ret
- 410:	8082                	ret
+ 3fa:	8082                	ret
 
-0000000000000412 <fstat>:
+00000000000003fc <fstat>:
 .global fstat
 fstat:
  li a7, SYS_fstat
- 412:	48a1                	li	a7,8
+ 3fc:	48a1                	li	a7,8
  ecall
- 414:	00000073          	ecall
+ 3fe:	00000073          	ecall
  ret
- 418:	8082                	ret
+ 402:	8082                	ret
 
-000000000000041a <link>:
+0000000000000404 <link>:
 .global link
 link:
  li a7, SYS_link
- 41a:	48cd                	li	a7,19
+ 404:	48cd                	li	a7,19
  ecall
- 41c:	00000073          	ecall
+ 406:	00000073          	ecall
  ret
- 420:	8082                	ret
+ 40a:	8082                	ret
 
-0000000000000422 <mkdir>:
+000000000000040c <mkdir>:
 .global mkdir
 mkdir:
  li a7, SYS_mkdir
- 422:	48d1                	li	a7,20
+ 40c:	48d1                	li	a7,20
  ecall
- 424:	00000073          	ecall
+ 40e:	00000073          	ecall
  ret
- 428:	8082                	ret
+ 412:	8082                	ret
 
-000000000000042a <chdir>:
+0000000000000414 <chdir>:
 .global chdir
 chdir:
  li a7, SYS_chdir
- 42a:	48a5                	li	a7,9
+ 414:	48a5                	li	a7,9
  ecall
- 42c:	00000073          	ecall
+ 416:	00000073          	ecall
  ret
- 430:	8082                	ret
+ 41a:	8082                	ret
 
-0000000000000432 <dup>:
+000000000000041c <dup>:
 .global dup
 dup:
  li a7, SYS_dup
- 432:	48a9                	li	a7,10
+ 41c:	48a9                	li	a7,10
  ecall
- 434:	00000073          	ecall
+ 41e:	00000073          	ecall
  ret
- 438:	8082                	ret
+ 422:	8082                	ret
 
-000000000000043a <getpid>:
+0000000000000424 <getpid>:
 .global getpid
 getpid:
  li a7, SYS_getpid
- 43a:	48ad                	li	a7,11
+ 424:	48ad                	li	a7,11
  ecall
- 43c:	00000073          	ecall
+ 426:	00000073          	ecall
  ret
- 440:	8082                	ret
+ 42a:	8082                	ret
 
-0000000000000442 <sbrk>:
+000000000000042c <sbrk>:
 .global sbrk
 sbrk:
  li a7, SYS_sbrk
- 442:	48b1                	li	a7,12
+ 42c:	48b1                	li	a7,12
  ecall
- 444:	00000073          	ecall
+ 42e:	00000073          	ecall
  ret
- 448:	8082                	ret
+ 432:	8082                	ret
 
-000000000000044a <sleep>:
+0000000000000434 <sleep>:
 .global sleep
 sleep:
  li a7, SYS_sleep
- 44a:	48b5                	li	a7,13
+ 434:	48b5                	li	a7,13
  ecall
- 44c:	00000073          	ecall
+ 436:	00000073          	ecall
  ret
- 450:	8082                	ret
+ 43a:	8082                	ret
 
-0000000000000452 <uptime>:
+000000000000043c <uptime>:
 .global uptime
 uptime:
  li a7, SYS_uptime
- 452:	48b9                	li	a7,14
+ 43c:	48b9                	li	a7,14
  ecall
- 454:	00000073          	ecall
+ 43e:	00000073          	ecall
  ret
- 458:	8082                	ret
+ 442:	8082                	ret
 
-000000000000045a <connect>:
+0000000000000444 <connect>:
 .global connect
 connect:
  li a7, SYS_connect
- 45a:	48f5                	li	a7,29
+ 444:	48f5                	li	a7,29
  ecall
- 45c:	00000073          	ecall
+ 446:	00000073          	ecall
  ret
- 460:	8082                	ret
+ 44a:	8082                	ret
 
-0000000000000462 <pgaccess>:
+000000000000044c <pgaccess>:
 .global pgaccess
 pgaccess:
  li a7, SYS_pgaccess
- 462:	48f9                	li	a7,30
+ 44c:	48f9                	li	a7,30
  ecall
- 464:	00000073          	ecall
+ 44e:	00000073          	ecall
  ret
- 468:	8082                	ret
+ 452:	8082                	ret
 
-000000000000046a <putc>:
+0000000000000454 <putc>:
 
 static char digits[] = "0123456789ABCDEF";
 
 static void
 putc(int fd, char c)
 {
- 46a:	1101                	addi	sp,sp,-32
- 46c:	ec06                	sd	ra,24(sp)
- 46e:	e822                	sd	s0,16(sp)
- 470:	1000                	addi	s0,sp,32
- 472:	feb407a3          	sb	a1,-17(s0)
+ 454:	1101                	addi	sp,sp,-32
+ 456:	ec06                	sd	ra,24(sp)
+ 458:	e822                	sd	s0,16(sp)
+ 45a:	1000                	addi	s0,sp,32
+ 45c:	feb407a3          	sb	a1,-17(s0)
   write(fd, &c, 1);
- 476:	4605                	li	a2,1
- 478:	fef40593          	addi	a1,s0,-17
- 47c:	00000097          	auipc	ra,0x0
- 480:	f5e080e7          	jalr	-162(ra) # 3da <write>
+ 460:	4605                	li	a2,1
+ 462:	fef40593          	addi	a1,s0,-17
+ 466:	00000097          	auipc	ra,0x0
+ 46a:	f5e080e7          	jalr	-162(ra) # 3c4 <write>
 }
- 484:	60e2                	ld	ra,24(sp)
- 486:	6442                	ld	s0,16(sp)
- 488:	6105                	addi	sp,sp,32
- 48a:	8082                	ret
+ 46e:	60e2                	ld	ra,24(sp)
+ 470:	6442                	ld	s0,16(sp)
+ 472:	6105                	addi	sp,sp,32
+ 474:	8082                	ret
 
-000000000000048c <printint>:
+0000000000000476 <printint>:
 
 static void
 printint(int fd, int xx, int base, int sgn)
 {
- 48c:	7139                	addi	sp,sp,-64
- 48e:	fc06                	sd	ra,56(sp)
- 490:	f822                	sd	s0,48(sp)
- 492:	f426                	sd	s1,40(sp)
- 494:	f04a                	sd	s2,32(sp)
- 496:	ec4e                	sd	s3,24(sp)
- 498:	0080                	addi	s0,sp,64
- 49a:	84aa                	mv	s1,a0
+ 476:	7139                	addi	sp,sp,-64
+ 478:	fc06                	sd	ra,56(sp)
+ 47a:	f822                	sd	s0,48(sp)
+ 47c:	f426                	sd	s1,40(sp)
+ 47e:	f04a                	sd	s2,32(sp)
+ 480:	ec4e                	sd	s3,24(sp)
+ 482:	0080                	addi	s0,sp,64
+ 484:	84aa                	mv	s1,a0
   char buf[16];
   int i, neg;
   uint x;
 
   neg = 0;
   if(sgn && xx < 0){
- 49c:	c299                	beqz	a3,4a2 <printint+0x16>
- 49e:	0805c963          	bltz	a1,530 <printint+0xa4>
+ 486:	c299                	beqz	a3,48c <printint+0x16>
+ 488:	0805c963          	bltz	a1,51a <printint+0xa4>
     neg = 1;
     x = -xx;
   } else {
     x = xx;
- 4a2:	2581                	sext.w	a1,a1
+ 48c:	2581                	sext.w	a1,a1
   neg = 0;
- 4a4:	4881                	li	a7,0
- 4a6:	fc040693          	addi	a3,s0,-64
+ 48e:	4881                	li	a7,0
+ 490:	fc040693          	addi	a3,s0,-64
   }
 
   i = 0;
- 4aa:	4701                	li	a4,0
+ 494:	4701                	li	a4,0
   do{
     buf[i++] = digits[x % base];
- 4ac:	2601                	sext.w	a2,a2
- 4ae:	00000517          	auipc	a0,0x0
- 4b2:	4ea50513          	addi	a0,a0,1258 # 998 <digits>
- 4b6:	883a                	mv	a6,a4
- 4b8:	2705                	addiw	a4,a4,1
- 4ba:	02c5f7bb          	remuw	a5,a1,a2
- 4be:	1782                	slli	a5,a5,0x20
- 4c0:	9381                	srli	a5,a5,0x20
- 4c2:	97aa                	add	a5,a5,a0
- 4c4:	0007c783          	lbu	a5,0(a5)
- 4c8:	00f68023          	sb	a5,0(a3)
+ 496:	2601                	sext.w	a2,a2
+ 498:	00000517          	auipc	a0,0x0
+ 49c:	4e050513          	addi	a0,a0,1248 # 978 <digits>
+ 4a0:	883a                	mv	a6,a4
+ 4a2:	2705                	addiw	a4,a4,1
+ 4a4:	02c5f7bb          	remuw	a5,a1,a2
+ 4a8:	1782                	slli	a5,a5,0x20
+ 4aa:	9381                	srli	a5,a5,0x20
+ 4ac:	97aa                	add	a5,a5,a0
+ 4ae:	0007c783          	lbu	a5,0(a5)
+ 4b2:	00f68023          	sb	a5,0(a3)
   }while((x /= base) != 0);
- 4cc:	0005879b          	sext.w	a5,a1
- 4d0:	02c5d5bb          	divuw	a1,a1,a2
- 4d4:	0685                	addi	a3,a3,1
- 4d6:	fec7f0e3          	bgeu	a5,a2,4b6 <printint+0x2a>
+ 4b6:	0005879b          	sext.w	a5,a1
+ 4ba:	02c5d5bb          	divuw	a1,a1,a2
+ 4be:	0685                	addi	a3,a3,1
+ 4c0:	fec7f0e3          	bgeu	a5,a2,4a0 <printint+0x2a>
   if(neg)
- 4da:	00088c63          	beqz	a7,4f2 <printint+0x66>
+ 4c4:	00088c63          	beqz	a7,4dc <printint+0x66>
     buf[i++] = '-';
- 4de:	fd070793          	addi	a5,a4,-48
- 4e2:	00878733          	add	a4,a5,s0
- 4e6:	02d00793          	li	a5,45
- 4ea:	fef70823          	sb	a5,-16(a4)
- 4ee:	0028071b          	addiw	a4,a6,2
+ 4c8:	fd070793          	addi	a5,a4,-48
+ 4cc:	00878733          	add	a4,a5,s0
+ 4d0:	02d00793          	li	a5,45
+ 4d4:	fef70823          	sb	a5,-16(a4)
+ 4d8:	0028071b          	addiw	a4,a6,2
 
   while(--i >= 0)
- 4f2:	02e05863          	blez	a4,522 <printint+0x96>
- 4f6:	fc040793          	addi	a5,s0,-64
- 4fa:	00e78933          	add	s2,a5,a4
- 4fe:	fff78993          	addi	s3,a5,-1
- 502:	99ba                	add	s3,s3,a4
- 504:	377d                	addiw	a4,a4,-1
- 506:	1702                	slli	a4,a4,0x20
- 508:	9301                	srli	a4,a4,0x20
- 50a:	40e989b3          	sub	s3,s3,a4
+ 4dc:	02e05863          	blez	a4,50c <printint+0x96>
+ 4e0:	fc040793          	addi	a5,s0,-64
+ 4e4:	00e78933          	add	s2,a5,a4
+ 4e8:	fff78993          	addi	s3,a5,-1
+ 4ec:	99ba                	add	s3,s3,a4
+ 4ee:	377d                	addiw	a4,a4,-1
+ 4f0:	1702                	slli	a4,a4,0x20
+ 4f2:	9301                	srli	a4,a4,0x20
+ 4f4:	40e989b3          	sub	s3,s3,a4
     putc(fd, buf[i]);
- 50e:	fff94583          	lbu	a1,-1(s2)
- 512:	8526                	mv	a0,s1
- 514:	00000097          	auipc	ra,0x0
- 518:	f56080e7          	jalr	-170(ra) # 46a <putc>
+ 4f8:	fff94583          	lbu	a1,-1(s2)
+ 4fc:	8526                	mv	a0,s1
+ 4fe:	00000097          	auipc	ra,0x0
+ 502:	f56080e7          	jalr	-170(ra) # 454 <putc>
   while(--i >= 0)
- 51c:	197d                	addi	s2,s2,-1
- 51e:	ff3918e3          	bne	s2,s3,50e <printint+0x82>
+ 506:	197d                	addi	s2,s2,-1
+ 508:	ff3918e3          	bne	s2,s3,4f8 <printint+0x82>
 }
- 522:	70e2                	ld	ra,56(sp)
- 524:	7442                	ld	s0,48(sp)
- 526:	74a2                	ld	s1,40(sp)
- 528:	7902                	ld	s2,32(sp)
- 52a:	69e2                	ld	s3,24(sp)
- 52c:	6121                	addi	sp,sp,64
- 52e:	8082                	ret
+ 50c:	70e2                	ld	ra,56(sp)
+ 50e:	7442                	ld	s0,48(sp)
+ 510:	74a2                	ld	s1,40(sp)
+ 512:	7902                	ld	s2,32(sp)
+ 514:	69e2                	ld	s3,24(sp)
+ 516:	6121                	addi	sp,sp,64
+ 518:	8082                	ret
     x = -xx;
- 530:	40b005bb          	negw	a1,a1
+ 51a:	40b005bb          	negw	a1,a1
     neg = 1;
- 534:	4885                	li	a7,1
+ 51e:	4885                	li	a7,1
     x = -xx;
- 536:	bf85                	j	4a6 <printint+0x1a>
+ 520:	bf85                	j	490 <printint+0x1a>
 
-0000000000000538 <vprintf>:
+0000000000000522 <vprintf>:
 }
 
 // Print to the given fd. Only understands %d, %x, %p, %s.
 void
 vprintf(int fd, const char *fmt, va_list ap)
 {
- 538:	7119                	addi	sp,sp,-128
- 53a:	fc86                	sd	ra,120(sp)
- 53c:	f8a2                	sd	s0,112(sp)
- 53e:	f4a6                	sd	s1,104(sp)
- 540:	f0ca                	sd	s2,96(sp)
- 542:	ecce                	sd	s3,88(sp)
- 544:	e8d2                	sd	s4,80(sp)
- 546:	e4d6                	sd	s5,72(sp)
- 548:	e0da                	sd	s6,64(sp)
- 54a:	fc5e                	sd	s7,56(sp)
- 54c:	f862                	sd	s8,48(sp)
- 54e:	f466                	sd	s9,40(sp)
- 550:	f06a                	sd	s10,32(sp)
- 552:	ec6e                	sd	s11,24(sp)
- 554:	0100                	addi	s0,sp,128
+ 522:	7119                	addi	sp,sp,-128
+ 524:	fc86                	sd	ra,120(sp)
+ 526:	f8a2                	sd	s0,112(sp)
+ 528:	f4a6                	sd	s1,104(sp)
+ 52a:	f0ca                	sd	s2,96(sp)
+ 52c:	ecce                	sd	s3,88(sp)
+ 52e:	e8d2                	sd	s4,80(sp)
+ 530:	e4d6                	sd	s5,72(sp)
+ 532:	e0da                	sd	s6,64(sp)
+ 534:	fc5e                	sd	s7,56(sp)
+ 536:	f862                	sd	s8,48(sp)
+ 538:	f466                	sd	s9,40(sp)
+ 53a:	f06a                	sd	s10,32(sp)
+ 53c:	ec6e                	sd	s11,24(sp)
+ 53e:	0100                	addi	s0,sp,128
   char *s;
   int c, i, state;
 
   state = 0;
   for(i = 0; fmt[i]; i++){
- 556:	0005c903          	lbu	s2,0(a1)
- 55a:	18090f63          	beqz	s2,6f8 <vprintf+0x1c0>
- 55e:	8aaa                	mv	s5,a0
- 560:	8b32                	mv	s6,a2
- 562:	00158493          	addi	s1,a1,1
+ 540:	0005c903          	lbu	s2,0(a1)
+ 544:	18090f63          	beqz	s2,6e2 <vprintf+0x1c0>
+ 548:	8aaa                	mv	s5,a0
+ 54a:	8b32                	mv	s6,a2
+ 54c:	00158493          	addi	s1,a1,1
   state = 0;
- 566:	4981                	li	s3,0
+ 550:	4981                	li	s3,0
       if(c == '%'){
         state = '%';
       } else {
         putc(fd, c);
       }
     } else if(state == '%'){
- 568:	02500a13          	li	s4,37
- 56c:	4c55                	li	s8,21
- 56e:	00000c97          	auipc	s9,0x0
- 572:	3d2c8c93          	addi	s9,s9,978 # 940 <malloc+0x144>
+ 552:	02500a13          	li	s4,37
+ 556:	4c55                	li	s8,21
+ 558:	00000c97          	auipc	s9,0x0
+ 55c:	3c8c8c93          	addi	s9,s9,968 # 920 <malloc+0x13a>
         printptr(fd, va_arg(ap, uint64));
       } else if(c == 's'){
         s = va_arg(ap, char*);
         if(s == 0)
           s = "(null)";
         while(*s != 0){
- 576:	02800d93          	li	s11,40
+ 560:	02800d93          	li	s11,40
   putc(fd, 'x');
- 57a:	4d41                	li	s10,16
+ 564:	4d41                	li	s10,16
     putc(fd, digits[x >> (sizeof(uint64) * 8 - 4)]);
- 57c:	00000b97          	auipc	s7,0x0
- 580:	41cb8b93          	addi	s7,s7,1052 # 998 <digits>
- 584:	a839                	j	5a2 <vprintf+0x6a>
+ 566:	00000b97          	auipc	s7,0x0
+ 56a:	412b8b93          	addi	s7,s7,1042 # 978 <digits>
+ 56e:	a839                	j	58c <vprintf+0x6a>
         putc(fd, c);
- 586:	85ca                	mv	a1,s2
- 588:	8556                	mv	a0,s5
- 58a:	00000097          	auipc	ra,0x0
- 58e:	ee0080e7          	jalr	-288(ra) # 46a <putc>
- 592:	a019                	j	598 <vprintf+0x60>
+ 570:	85ca                	mv	a1,s2
+ 572:	8556                	mv	a0,s5
+ 574:	00000097          	auipc	ra,0x0
+ 578:	ee0080e7          	jalr	-288(ra) # 454 <putc>
+ 57c:	a019                	j	582 <vprintf+0x60>
     } else if(state == '%'){
- 594:	01498d63          	beq	s3,s4,5ae <vprintf+0x76>
+ 57e:	01498d63          	beq	s3,s4,598 <vprintf+0x76>
   for(i = 0; fmt[i]; i++){
- 598:	0485                	addi	s1,s1,1
- 59a:	fff4c903          	lbu	s2,-1(s1)
- 59e:	14090d63          	beqz	s2,6f8 <vprintf+0x1c0>
+ 582:	0485                	addi	s1,s1,1
+ 584:	fff4c903          	lbu	s2,-1(s1)
+ 588:	14090d63          	beqz	s2,6e2 <vprintf+0x1c0>
     if(state == 0){
- 5a2:	fe0999e3          	bnez	s3,594 <vprintf+0x5c>
+ 58c:	fe0999e3          	bnez	s3,57e <vprintf+0x5c>
       if(c == '%'){
- 5a6:	ff4910e3          	bne	s2,s4,586 <vprintf+0x4e>
+ 590:	ff4910e3          	bne	s2,s4,570 <vprintf+0x4e>
         state = '%';
- 5aa:	89d2                	mv	s3,s4
- 5ac:	b7f5                	j	598 <vprintf+0x60>
+ 594:	89d2                	mv	s3,s4
+ 596:	b7f5                	j	582 <vprintf+0x60>
       if(c == 'd'){
- 5ae:	11490c63          	beq	s2,s4,6c6 <vprintf+0x18e>
- 5b2:	f9d9079b          	addiw	a5,s2,-99
- 5b6:	0ff7f793          	zext.b	a5,a5
- 5ba:	10fc6e63          	bltu	s8,a5,6d6 <vprintf+0x19e>
- 5be:	f9d9079b          	addiw	a5,s2,-99
- 5c2:	0ff7f713          	zext.b	a4,a5
- 5c6:	10ec6863          	bltu	s8,a4,6d6 <vprintf+0x19e>
- 5ca:	00271793          	slli	a5,a4,0x2
- 5ce:	97e6                	add	a5,a5,s9
- 5d0:	439c                	lw	a5,0(a5)
- 5d2:	97e6                	add	a5,a5,s9
- 5d4:	8782                	jr	a5
+ 598:	11490c63          	beq	s2,s4,6b0 <vprintf+0x18e>
+ 59c:	f9d9079b          	addiw	a5,s2,-99
+ 5a0:	0ff7f793          	zext.b	a5,a5
+ 5a4:	10fc6e63          	bltu	s8,a5,6c0 <vprintf+0x19e>
+ 5a8:	f9d9079b          	addiw	a5,s2,-99
+ 5ac:	0ff7f713          	zext.b	a4,a5
+ 5b0:	10ec6863          	bltu	s8,a4,6c0 <vprintf+0x19e>
+ 5b4:	00271793          	slli	a5,a4,0x2
+ 5b8:	97e6                	add	a5,a5,s9
+ 5ba:	439c                	lw	a5,0(a5)
+ 5bc:	97e6                	add	a5,a5,s9
+ 5be:	8782                	jr	a5
         printint(fd, va_arg(ap, int), 10, 1);
- 5d6:	008b0913          	addi	s2,s6,8
- 5da:	4685                	li	a3,1
- 5dc:	4629                	li	a2,10
- 5de:	000b2583          	lw	a1,0(s6)
- 5e2:	8556                	mv	a0,s5
- 5e4:	00000097          	auipc	ra,0x0
- 5e8:	ea8080e7          	jalr	-344(ra) # 48c <printint>
- 5ec:	8b4a                	mv	s6,s2
+ 5c0:	008b0913          	addi	s2,s6,8
+ 5c4:	4685                	li	a3,1
+ 5c6:	4629                	li	a2,10
+ 5c8:	000b2583          	lw	a1,0(s6)
+ 5cc:	8556                	mv	a0,s5
+ 5ce:	00000097          	auipc	ra,0x0
+ 5d2:	ea8080e7          	jalr	-344(ra) # 476 <printint>
+ 5d6:	8b4a                	mv	s6,s2
       } else {
         // Unknown % sequence.  Print it to draw attention.
         putc(fd, '%');
         putc(fd, c);
       }
       state = 0;
- 5ee:	4981                	li	s3,0
- 5f0:	b765                	j	598 <vprintf+0x60>
+ 5d8:	4981                	li	s3,0
+ 5da:	b765                	j	582 <vprintf+0x60>
         printint(fd, va_arg(ap, uint64), 10, 0);
- 5f2:	008b0913          	addi	s2,s6,8
- 5f6:	4681                	li	a3,0
- 5f8:	4629                	li	a2,10
- 5fa:	000b2583          	lw	a1,0(s6)
- 5fe:	8556                	mv	a0,s5
- 600:	00000097          	auipc	ra,0x0
- 604:	e8c080e7          	jalr	-372(ra) # 48c <printint>
- 608:	8b4a                	mv	s6,s2
+ 5dc:	008b0913          	addi	s2,s6,8
+ 5e0:	4681                	li	a3,0
+ 5e2:	4629                	li	a2,10
+ 5e4:	000b2583          	lw	a1,0(s6)
+ 5e8:	8556                	mv	a0,s5
+ 5ea:	00000097          	auipc	ra,0x0
+ 5ee:	e8c080e7          	jalr	-372(ra) # 476 <printint>
+ 5f2:	8b4a                	mv	s6,s2
       state = 0;
- 60a:	4981                	li	s3,0
- 60c:	b771                	j	598 <vprintf+0x60>
+ 5f4:	4981                	li	s3,0
+ 5f6:	b771                	j	582 <vprintf+0x60>
         printint(fd, va_arg(ap, int), 16, 0);
- 60e:	008b0913          	addi	s2,s6,8
- 612:	4681                	li	a3,0
- 614:	866a                	mv	a2,s10
- 616:	000b2583          	lw	a1,0(s6)
- 61a:	8556                	mv	a0,s5
- 61c:	00000097          	auipc	ra,0x0
- 620:	e70080e7          	jalr	-400(ra) # 48c <printint>
- 624:	8b4a                	mv	s6,s2
+ 5f8:	008b0913          	addi	s2,s6,8
+ 5fc:	4681                	li	a3,0
+ 5fe:	866a                	mv	a2,s10
+ 600:	000b2583          	lw	a1,0(s6)
+ 604:	8556                	mv	a0,s5
+ 606:	00000097          	auipc	ra,0x0
+ 60a:	e70080e7          	jalr	-400(ra) # 476 <printint>
+ 60e:	8b4a                	mv	s6,s2
       state = 0;
- 626:	4981                	li	s3,0
- 628:	bf85                	j	598 <vprintf+0x60>
+ 610:	4981                	li	s3,0
+ 612:	bf85                	j	582 <vprintf+0x60>
         printptr(fd, va_arg(ap, uint64));
- 62a:	008b0793          	addi	a5,s6,8
- 62e:	f8f43423          	sd	a5,-120(s0)
- 632:	000b3983          	ld	s3,0(s6)
+ 614:	008b0793          	addi	a5,s6,8
+ 618:	f8f43423          	sd	a5,-120(s0)
+ 61c:	000b3983          	ld	s3,0(s6)
   putc(fd, '0');
- 636:	03000593          	li	a1,48
- 63a:	8556                	mv	a0,s5
- 63c:	00000097          	auipc	ra,0x0
- 640:	e2e080e7          	jalr	-466(ra) # 46a <putc>
+ 620:	03000593          	li	a1,48
+ 624:	8556                	mv	a0,s5
+ 626:	00000097          	auipc	ra,0x0
+ 62a:	e2e080e7          	jalr	-466(ra) # 454 <putc>
   putc(fd, 'x');
- 644:	07800593          	li	a1,120
+ 62e:	07800593          	li	a1,120
+ 632:	8556                	mv	a0,s5
+ 634:	00000097          	auipc	ra,0x0
+ 638:	e20080e7          	jalr	-480(ra) # 454 <putc>
+ 63c:	896a                	mv	s2,s10
+    putc(fd, digits[x >> (sizeof(uint64) * 8 - 4)]);
+ 63e:	03c9d793          	srli	a5,s3,0x3c
+ 642:	97de                	add	a5,a5,s7
+ 644:	0007c583          	lbu	a1,0(a5)
  648:	8556                	mv	a0,s5
  64a:	00000097          	auipc	ra,0x0
- 64e:	e20080e7          	jalr	-480(ra) # 46a <putc>
- 652:	896a                	mv	s2,s10
-    putc(fd, digits[x >> (sizeof(uint64) * 8 - 4)]);
- 654:	03c9d793          	srli	a5,s3,0x3c
- 658:	97de                	add	a5,a5,s7
- 65a:	0007c583          	lbu	a1,0(a5)
- 65e:	8556                	mv	a0,s5
- 660:	00000097          	auipc	ra,0x0
- 664:	e0a080e7          	jalr	-502(ra) # 46a <putc>
+ 64e:	e0a080e7          	jalr	-502(ra) # 454 <putc>
   for (i = 0; i < (sizeof(uint64) * 2); i++, x <<= 4)
- 668:	0992                	slli	s3,s3,0x4
- 66a:	397d                	addiw	s2,s2,-1
- 66c:	fe0914e3          	bnez	s2,654 <vprintf+0x11c>
+ 652:	0992                	slli	s3,s3,0x4
+ 654:	397d                	addiw	s2,s2,-1
+ 656:	fe0914e3          	bnez	s2,63e <vprintf+0x11c>
         printptr(fd, va_arg(ap, uint64));
- 670:	f8843b03          	ld	s6,-120(s0)
+ 65a:	f8843b03          	ld	s6,-120(s0)
       state = 0;
- 674:	4981                	li	s3,0
- 676:	b70d                	j	598 <vprintf+0x60>
+ 65e:	4981                	li	s3,0
+ 660:	b70d                	j	582 <vprintf+0x60>
         s = va_arg(ap, char*);
- 678:	008b0913          	addi	s2,s6,8
- 67c:	000b3983          	ld	s3,0(s6)
+ 662:	008b0913          	addi	s2,s6,8
+ 666:	000b3983          	ld	s3,0(s6)
         if(s == 0)
- 680:	02098163          	beqz	s3,6a2 <vprintf+0x16a>
+ 66a:	02098163          	beqz	s3,68c <vprintf+0x16a>
         while(*s != 0){
- 684:	0009c583          	lbu	a1,0(s3)
- 688:	c5ad                	beqz	a1,6f2 <vprintf+0x1ba>
+ 66e:	0009c583          	lbu	a1,0(s3)
+ 672:	c5ad                	beqz	a1,6dc <vprintf+0x1ba>
           putc(fd, *s);
- 68a:	8556                	mv	a0,s5
- 68c:	00000097          	auipc	ra,0x0
- 690:	dde080e7          	jalr	-546(ra) # 46a <putc>
+ 674:	8556                	mv	a0,s5
+ 676:	00000097          	auipc	ra,0x0
+ 67a:	dde080e7          	jalr	-546(ra) # 454 <putc>
           s++;
- 694:	0985                	addi	s3,s3,1
+ 67e:	0985                	addi	s3,s3,1
         while(*s != 0){
- 696:	0009c583          	lbu	a1,0(s3)
- 69a:	f9e5                	bnez	a1,68a <vprintf+0x152>
+ 680:	0009c583          	lbu	a1,0(s3)
+ 684:	f9e5                	bnez	a1,674 <vprintf+0x152>
         s = va_arg(ap, char*);
- 69c:	8b4a                	mv	s6,s2
+ 686:	8b4a                	mv	s6,s2
       state = 0;
- 69e:	4981                	li	s3,0
- 6a0:	bde5                	j	598 <vprintf+0x60>
+ 688:	4981                	li	s3,0
+ 68a:	bde5                	j	582 <vprintf+0x60>
           s = "(null)";
- 6a2:	00000997          	auipc	s3,0x0
- 6a6:	29698993          	addi	s3,s3,662 # 938 <malloc+0x13c>
+ 68c:	00000997          	auipc	s3,0x0
+ 690:	28c98993          	addi	s3,s3,652 # 918 <malloc+0x132>
         while(*s != 0){
- 6aa:	85ee                	mv	a1,s11
- 6ac:	bff9                	j	68a <vprintf+0x152>
+ 694:	85ee                	mv	a1,s11
+ 696:	bff9                	j	674 <vprintf+0x152>
         putc(fd, va_arg(ap, uint));
- 6ae:	008b0913          	addi	s2,s6,8
- 6b2:	000b4583          	lbu	a1,0(s6)
- 6b6:	8556                	mv	a0,s5
- 6b8:	00000097          	auipc	ra,0x0
- 6bc:	db2080e7          	jalr	-590(ra) # 46a <putc>
- 6c0:	8b4a                	mv	s6,s2
+ 698:	008b0913          	addi	s2,s6,8
+ 69c:	000b4583          	lbu	a1,0(s6)
+ 6a0:	8556                	mv	a0,s5
+ 6a2:	00000097          	auipc	ra,0x0
+ 6a6:	db2080e7          	jalr	-590(ra) # 454 <putc>
+ 6aa:	8b4a                	mv	s6,s2
       state = 0;
- 6c2:	4981                	li	s3,0
- 6c4:	bdd1                	j	598 <vprintf+0x60>
+ 6ac:	4981                	li	s3,0
+ 6ae:	bdd1                	j	582 <vprintf+0x60>
         putc(fd, c);
- 6c6:	85d2                	mv	a1,s4
- 6c8:	8556                	mv	a0,s5
- 6ca:	00000097          	auipc	ra,0x0
- 6ce:	da0080e7          	jalr	-608(ra) # 46a <putc>
+ 6b0:	85d2                	mv	a1,s4
+ 6b2:	8556                	mv	a0,s5
+ 6b4:	00000097          	auipc	ra,0x0
+ 6b8:	da0080e7          	jalr	-608(ra) # 454 <putc>
       state = 0;
- 6d2:	4981                	li	s3,0
- 6d4:	b5d1                	j	598 <vprintf+0x60>
+ 6bc:	4981                	li	s3,0
+ 6be:	b5d1                	j	582 <vprintf+0x60>
         putc(fd, '%');
- 6d6:	85d2                	mv	a1,s4
- 6d8:	8556                	mv	a0,s5
- 6da:	00000097          	auipc	ra,0x0
- 6de:	d90080e7          	jalr	-624(ra) # 46a <putc>
+ 6c0:	85d2                	mv	a1,s4
+ 6c2:	8556                	mv	a0,s5
+ 6c4:	00000097          	auipc	ra,0x0
+ 6c8:	d90080e7          	jalr	-624(ra) # 454 <putc>
         putc(fd, c);
- 6e2:	85ca                	mv	a1,s2
- 6e4:	8556                	mv	a0,s5
- 6e6:	00000097          	auipc	ra,0x0
- 6ea:	d84080e7          	jalr	-636(ra) # 46a <putc>
+ 6cc:	85ca                	mv	a1,s2
+ 6ce:	8556                	mv	a0,s5
+ 6d0:	00000097          	auipc	ra,0x0
+ 6d4:	d84080e7          	jalr	-636(ra) # 454 <putc>
       state = 0;
- 6ee:	4981                	li	s3,0
- 6f0:	b565                	j	598 <vprintf+0x60>
+ 6d8:	4981                	li	s3,0
+ 6da:	b565                	j	582 <vprintf+0x60>
         s = va_arg(ap, char*);
- 6f2:	8b4a                	mv	s6,s2
+ 6dc:	8b4a                	mv	s6,s2
       state = 0;
- 6f4:	4981                	li	s3,0
- 6f6:	b54d                	j	598 <vprintf+0x60>
+ 6de:	4981                	li	s3,0
+ 6e0:	b54d                	j	582 <vprintf+0x60>
     }
   }
 }
- 6f8:	70e6                	ld	ra,120(sp)
- 6fa:	7446                	ld	s0,112(sp)
- 6fc:	74a6                	ld	s1,104(sp)
- 6fe:	7906                	ld	s2,96(sp)
- 700:	69e6                	ld	s3,88(sp)
- 702:	6a46                	ld	s4,80(sp)
- 704:	6aa6                	ld	s5,72(sp)
- 706:	6b06                	ld	s6,64(sp)
- 708:	7be2                	ld	s7,56(sp)
- 70a:	7c42                	ld	s8,48(sp)
- 70c:	7ca2                	ld	s9,40(sp)
- 70e:	7d02                	ld	s10,32(sp)
- 710:	6de2                	ld	s11,24(sp)
- 712:	6109                	addi	sp,sp,128
- 714:	8082                	ret
+ 6e2:	70e6                	ld	ra,120(sp)
+ 6e4:	7446                	ld	s0,112(sp)
+ 6e6:	74a6                	ld	s1,104(sp)
+ 6e8:	7906                	ld	s2,96(sp)
+ 6ea:	69e6                	ld	s3,88(sp)
+ 6ec:	6a46                	ld	s4,80(sp)
+ 6ee:	6aa6                	ld	s5,72(sp)
+ 6f0:	6b06                	ld	s6,64(sp)
+ 6f2:	7be2                	ld	s7,56(sp)
+ 6f4:	7c42                	ld	s8,48(sp)
+ 6f6:	7ca2                	ld	s9,40(sp)
+ 6f8:	7d02                	ld	s10,32(sp)
+ 6fa:	6de2                	ld	s11,24(sp)
+ 6fc:	6109                	addi	sp,sp,128
+ 6fe:	8082                	ret
 
-0000000000000716 <fprintf>:
+0000000000000700 <fprintf>:
 
 void
 fprintf(int fd, const char *fmt, ...)
 {
- 716:	715d                	addi	sp,sp,-80
- 718:	ec06                	sd	ra,24(sp)
- 71a:	e822                	sd	s0,16(sp)
- 71c:	1000                	addi	s0,sp,32
- 71e:	e010                	sd	a2,0(s0)
- 720:	e414                	sd	a3,8(s0)
- 722:	e818                	sd	a4,16(s0)
- 724:	ec1c                	sd	a5,24(s0)
- 726:	03043023          	sd	a6,32(s0)
- 72a:	03143423          	sd	a7,40(s0)
+ 700:	715d                	addi	sp,sp,-80
+ 702:	ec06                	sd	ra,24(sp)
+ 704:	e822                	sd	s0,16(sp)
+ 706:	1000                	addi	s0,sp,32
+ 708:	e010                	sd	a2,0(s0)
+ 70a:	e414                	sd	a3,8(s0)
+ 70c:	e818                	sd	a4,16(s0)
+ 70e:	ec1c                	sd	a5,24(s0)
+ 710:	03043023          	sd	a6,32(s0)
+ 714:	03143423          	sd	a7,40(s0)
   va_list ap;
 
   va_start(ap, fmt);
- 72e:	fe843423          	sd	s0,-24(s0)
+ 718:	fe843423          	sd	s0,-24(s0)
   vprintf(fd, fmt, ap);
- 732:	8622                	mv	a2,s0
- 734:	00000097          	auipc	ra,0x0
- 738:	e04080e7          	jalr	-508(ra) # 538 <vprintf>
+ 71c:	8622                	mv	a2,s0
+ 71e:	00000097          	auipc	ra,0x0
+ 722:	e04080e7          	jalr	-508(ra) # 522 <vprintf>
 }
- 73c:	60e2                	ld	ra,24(sp)
- 73e:	6442                	ld	s0,16(sp)
- 740:	6161                	addi	sp,sp,80
- 742:	8082                	ret
+ 726:	60e2                	ld	ra,24(sp)
+ 728:	6442                	ld	s0,16(sp)
+ 72a:	6161                	addi	sp,sp,80
+ 72c:	8082                	ret
 
-0000000000000744 <printf>:
+000000000000072e <printf>:
 
 void
 printf(const char *fmt, ...)
 {
- 744:	711d                	addi	sp,sp,-96
- 746:	ec06                	sd	ra,24(sp)
- 748:	e822                	sd	s0,16(sp)
- 74a:	1000                	addi	s0,sp,32
- 74c:	e40c                	sd	a1,8(s0)
- 74e:	e810                	sd	a2,16(s0)
- 750:	ec14                	sd	a3,24(s0)
- 752:	f018                	sd	a4,32(s0)
- 754:	f41c                	sd	a5,40(s0)
- 756:	03043823          	sd	a6,48(s0)
- 75a:	03143c23          	sd	a7,56(s0)
+ 72e:	711d                	addi	sp,sp,-96
+ 730:	ec06                	sd	ra,24(sp)
+ 732:	e822                	sd	s0,16(sp)
+ 734:	1000                	addi	s0,sp,32
+ 736:	e40c                	sd	a1,8(s0)
+ 738:	e810                	sd	a2,16(s0)
+ 73a:	ec14                	sd	a3,24(s0)
+ 73c:	f018                	sd	a4,32(s0)
+ 73e:	f41c                	sd	a5,40(s0)
+ 740:	03043823          	sd	a6,48(s0)
+ 744:	03143c23          	sd	a7,56(s0)
   va_list ap;
 
   va_start(ap, fmt);
- 75e:	00840613          	addi	a2,s0,8
- 762:	fec43423          	sd	a2,-24(s0)
+ 748:	00840613          	addi	a2,s0,8
+ 74c:	fec43423          	sd	a2,-24(s0)
   vprintf(1, fmt, ap);
- 766:	85aa                	mv	a1,a0
- 768:	4505                	li	a0,1
- 76a:	00000097          	auipc	ra,0x0
- 76e:	dce080e7          	jalr	-562(ra) # 538 <vprintf>
+ 750:	85aa                	mv	a1,a0
+ 752:	4505                	li	a0,1
+ 754:	00000097          	auipc	ra,0x0
+ 758:	dce080e7          	jalr	-562(ra) # 522 <vprintf>
 }
- 772:	60e2                	ld	ra,24(sp)
- 774:	6442                	ld	s0,16(sp)
- 776:	6125                	addi	sp,sp,96
- 778:	8082                	ret
+ 75c:	60e2                	ld	ra,24(sp)
+ 75e:	6442                	ld	s0,16(sp)
+ 760:	6125                	addi	sp,sp,96
+ 762:	8082                	ret
 
-000000000000077a <free>:
+0000000000000764 <free>:
 static Header base;
 static Header *freep;
 
 void
 free(void *ap)
 {
- 77a:	1141                	addi	sp,sp,-16
- 77c:	e422                	sd	s0,8(sp)
- 77e:	0800                	addi	s0,sp,16
+ 764:	1141                	addi	sp,sp,-16
+ 766:	e422                	sd	s0,8(sp)
+ 768:	0800                	addi	s0,sp,16
   Header *bp, *p;
 
   bp = (Header*)ap - 1;
- 780:	ff050693          	addi	a3,a0,-16
+ 76a:	ff050693          	addi	a3,a0,-16
   for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
- 784:	00001797          	auipc	a5,0x1
- 788:	87c7b783          	ld	a5,-1924(a5) # 1000 <freep>
- 78c:	a02d                	j	7b6 <free+0x3c>
+ 76e:	00001797          	auipc	a5,0x1
+ 772:	8927b783          	ld	a5,-1902(a5) # 1000 <freep>
+ 776:	a02d                	j	7a0 <free+0x3c>
     if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
       break;
   if(bp + bp->s.size == p->s.ptr){
     bp->s.size += p->s.ptr->s.size;
- 78e:	4618                	lw	a4,8(a2)
- 790:	9f2d                	addw	a4,a4,a1
- 792:	fee52c23          	sw	a4,-8(a0)
+ 778:	4618                	lw	a4,8(a2)
+ 77a:	9f2d                	addw	a4,a4,a1
+ 77c:	fee52c23          	sw	a4,-8(a0)
     bp->s.ptr = p->s.ptr->s.ptr;
- 796:	6398                	ld	a4,0(a5)
- 798:	6310                	ld	a2,0(a4)
- 79a:	a83d                	j	7d8 <free+0x5e>
+ 780:	6398                	ld	a4,0(a5)
+ 782:	6310                	ld	a2,0(a4)
+ 784:	a83d                	j	7c2 <free+0x5e>
   } else
     bp->s.ptr = p->s.ptr;
   if(p + p->s.size == bp){
     p->s.size += bp->s.size;
- 79c:	ff852703          	lw	a4,-8(a0)
- 7a0:	9f31                	addw	a4,a4,a2
- 7a2:	c798                	sw	a4,8(a5)
+ 786:	ff852703          	lw	a4,-8(a0)
+ 78a:	9f31                	addw	a4,a4,a2
+ 78c:	c798                	sw	a4,8(a5)
     p->s.ptr = bp->s.ptr;
- 7a4:	ff053683          	ld	a3,-16(a0)
- 7a8:	a091                	j	7ec <free+0x72>
+ 78e:	ff053683          	ld	a3,-16(a0)
+ 792:	a091                	j	7d6 <free+0x72>
     if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
- 7aa:	6398                	ld	a4,0(a5)
- 7ac:	00e7e463          	bltu	a5,a4,7b4 <free+0x3a>
- 7b0:	00e6ea63          	bltu	a3,a4,7c4 <free+0x4a>
+ 794:	6398                	ld	a4,0(a5)
+ 796:	00e7e463          	bltu	a5,a4,79e <free+0x3a>
+ 79a:	00e6ea63          	bltu	a3,a4,7ae <free+0x4a>
 {
- 7b4:	87ba                	mv	a5,a4
+ 79e:	87ba                	mv	a5,a4
   for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
- 7b6:	fed7fae3          	bgeu	a5,a3,7aa <free+0x30>
- 7ba:	6398                	ld	a4,0(a5)
- 7bc:	00e6e463          	bltu	a3,a4,7c4 <free+0x4a>
+ 7a0:	fed7fae3          	bgeu	a5,a3,794 <free+0x30>
+ 7a4:	6398                	ld	a4,0(a5)
+ 7a6:	00e6e463          	bltu	a3,a4,7ae <free+0x4a>
     if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
- 7c0:	fee7eae3          	bltu	a5,a4,7b4 <free+0x3a>
+ 7aa:	fee7eae3          	bltu	a5,a4,79e <free+0x3a>
   if(bp + bp->s.size == p->s.ptr){
- 7c4:	ff852583          	lw	a1,-8(a0)
- 7c8:	6390                	ld	a2,0(a5)
- 7ca:	02059813          	slli	a6,a1,0x20
- 7ce:	01c85713          	srli	a4,a6,0x1c
- 7d2:	9736                	add	a4,a4,a3
- 7d4:	fae60de3          	beq	a2,a4,78e <free+0x14>
+ 7ae:	ff852583          	lw	a1,-8(a0)
+ 7b2:	6390                	ld	a2,0(a5)
+ 7b4:	02059813          	slli	a6,a1,0x20
+ 7b8:	01c85713          	srli	a4,a6,0x1c
+ 7bc:	9736                	add	a4,a4,a3
+ 7be:	fae60de3          	beq	a2,a4,778 <free+0x14>
     bp->s.ptr = p->s.ptr->s.ptr;
- 7d8:	fec53823          	sd	a2,-16(a0)
+ 7c2:	fec53823          	sd	a2,-16(a0)
   if(p + p->s.size == bp){
- 7dc:	4790                	lw	a2,8(a5)
- 7de:	02061593          	slli	a1,a2,0x20
- 7e2:	01c5d713          	srli	a4,a1,0x1c
- 7e6:	973e                	add	a4,a4,a5
- 7e8:	fae68ae3          	beq	a3,a4,79c <free+0x22>
+ 7c6:	4790                	lw	a2,8(a5)
+ 7c8:	02061593          	slli	a1,a2,0x20
+ 7cc:	01c5d713          	srli	a4,a1,0x1c
+ 7d0:	973e                	add	a4,a4,a5
+ 7d2:	fae68ae3          	beq	a3,a4,786 <free+0x22>
     p->s.ptr = bp->s.ptr;
- 7ec:	e394                	sd	a3,0(a5)
+ 7d6:	e394                	sd	a3,0(a5)
   } else
     p->s.ptr = bp;
   freep = p;
- 7ee:	00001717          	auipc	a4,0x1
- 7f2:	80f73923          	sd	a5,-2030(a4) # 1000 <freep>
+ 7d8:	00001717          	auipc	a4,0x1
+ 7dc:	82f73423          	sd	a5,-2008(a4) # 1000 <freep>
 }
- 7f6:	6422                	ld	s0,8(sp)
- 7f8:	0141                	addi	sp,sp,16
- 7fa:	8082                	ret
+ 7e0:	6422                	ld	s0,8(sp)
+ 7e2:	0141                	addi	sp,sp,16
+ 7e4:	8082                	ret
 
-00000000000007fc <malloc>:
+00000000000007e6 <malloc>:
   return freep;
 }
 
 void*
 malloc(uint nbytes)
 {
- 7fc:	7139                	addi	sp,sp,-64
- 7fe:	fc06                	sd	ra,56(sp)
- 800:	f822                	sd	s0,48(sp)
- 802:	f426                	sd	s1,40(sp)
- 804:	f04a                	sd	s2,32(sp)
- 806:	ec4e                	sd	s3,24(sp)
- 808:	e852                	sd	s4,16(sp)
- 80a:	e456                	sd	s5,8(sp)
- 80c:	e05a                	sd	s6,0(sp)
- 80e:	0080                	addi	s0,sp,64
+ 7e6:	7139                	addi	sp,sp,-64
+ 7e8:	fc06                	sd	ra,56(sp)
+ 7ea:	f822                	sd	s0,48(sp)
+ 7ec:	f426                	sd	s1,40(sp)
+ 7ee:	f04a                	sd	s2,32(sp)
+ 7f0:	ec4e                	sd	s3,24(sp)
+ 7f2:	e852                	sd	s4,16(sp)
+ 7f4:	e456                	sd	s5,8(sp)
+ 7f6:	e05a                	sd	s6,0(sp)
+ 7f8:	0080                	addi	s0,sp,64
   Header *p, *prevp;
   uint nunits;
 
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
- 810:	02051493          	slli	s1,a0,0x20
- 814:	9081                	srli	s1,s1,0x20
- 816:	04bd                	addi	s1,s1,15
- 818:	8091                	srli	s1,s1,0x4
- 81a:	0014899b          	addiw	s3,s1,1
- 81e:	0485                	addi	s1,s1,1
+ 7fa:	02051493          	slli	s1,a0,0x20
+ 7fe:	9081                	srli	s1,s1,0x20
+ 800:	04bd                	addi	s1,s1,15
+ 802:	8091                	srli	s1,s1,0x4
+ 804:	0014899b          	addiw	s3,s1,1
+ 808:	0485                	addi	s1,s1,1
   if((prevp = freep) == 0){
- 820:	00000517          	auipc	a0,0x0
- 824:	7e053503          	ld	a0,2016(a0) # 1000 <freep>
- 828:	c515                	beqz	a0,854 <malloc+0x58>
+ 80a:	00000517          	auipc	a0,0x0
+ 80e:	7f653503          	ld	a0,2038(a0) # 1000 <freep>
+ 812:	c515                	beqz	a0,83e <malloc+0x58>
     base.s.ptr = freep = prevp = &base;
     base.s.size = 0;
   }
   for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
- 82a:	611c                	ld	a5,0(a0)
+ 814:	611c                	ld	a5,0(a0)
     if(p->s.size >= nunits){
- 82c:	4798                	lw	a4,8(a5)
- 82e:	02977f63          	bgeu	a4,s1,86c <malloc+0x70>
- 832:	8a4e                	mv	s4,s3
- 834:	0009871b          	sext.w	a4,s3
- 838:	6685                	lui	a3,0x1
- 83a:	00d77363          	bgeu	a4,a3,840 <malloc+0x44>
- 83e:	6a05                	lui	s4,0x1
- 840:	000a0b1b          	sext.w	s6,s4
+ 816:	4798                	lw	a4,8(a5)
+ 818:	02977f63          	bgeu	a4,s1,856 <malloc+0x70>
+ 81c:	8a4e                	mv	s4,s3
+ 81e:	0009871b          	sext.w	a4,s3
+ 822:	6685                	lui	a3,0x1
+ 824:	00d77363          	bgeu	a4,a3,82a <malloc+0x44>
+ 828:	6a05                	lui	s4,0x1
+ 82a:	000a0b1b          	sext.w	s6,s4
   p = sbrk(nu * sizeof(Header));
- 844:	004a1a1b          	slliw	s4,s4,0x4
+ 82e:	004a1a1b          	slliw	s4,s4,0x4
         p->s.size = nunits;
       }
       freep = prevp;
       return (void*)(p + 1);
     }
     if(p == freep)
- 848:	00000917          	auipc	s2,0x0
- 84c:	7b890913          	addi	s2,s2,1976 # 1000 <freep>
+ 832:	00000917          	auipc	s2,0x0
+ 836:	7ce90913          	addi	s2,s2,1998 # 1000 <freep>
   if(p == (char*)-1)
- 850:	5afd                	li	s5,-1
- 852:	a895                	j	8c6 <malloc+0xca>
+ 83a:	5afd                	li	s5,-1
+ 83c:	a895                	j	8b0 <malloc+0xca>
     base.s.ptr = freep = prevp = &base;
- 854:	00001797          	auipc	a5,0x1
- 858:	9bc78793          	addi	a5,a5,-1604 # 1210 <base>
- 85c:	00000717          	auipc	a4,0x0
- 860:	7af73223          	sd	a5,1956(a4) # 1000 <freep>
- 864:	e39c                	sd	a5,0(a5)
+ 83e:	00001797          	auipc	a5,0x1
+ 842:	9d278793          	addi	a5,a5,-1582 # 1210 <base>
+ 846:	00000717          	auipc	a4,0x0
+ 84a:	7af73d23          	sd	a5,1978(a4) # 1000 <freep>
+ 84e:	e39c                	sd	a5,0(a5)
     base.s.size = 0;
- 866:	0007a423          	sw	zero,8(a5)
+ 850:	0007a423          	sw	zero,8(a5)
     if(p->s.size >= nunits){
- 86a:	b7e1                	j	832 <malloc+0x36>
+ 854:	b7e1                	j	81c <malloc+0x36>
       if(p->s.size == nunits)
- 86c:	02e48c63          	beq	s1,a4,8a4 <malloc+0xa8>
+ 856:	02e48c63          	beq	s1,a4,88e <malloc+0xa8>
         p->s.size -= nunits;
- 870:	4137073b          	subw	a4,a4,s3
- 874:	c798                	sw	a4,8(a5)
+ 85a:	4137073b          	subw	a4,a4,s3
+ 85e:	c798                	sw	a4,8(a5)
         p += p->s.size;
- 876:	02071693          	slli	a3,a4,0x20
- 87a:	01c6d713          	srli	a4,a3,0x1c
- 87e:	97ba                	add	a5,a5,a4
+ 860:	02071693          	slli	a3,a4,0x20
+ 864:	01c6d713          	srli	a4,a3,0x1c
+ 868:	97ba                	add	a5,a5,a4
         p->s.size = nunits;
- 880:	0137a423          	sw	s3,8(a5)
+ 86a:	0137a423          	sw	s3,8(a5)
       freep = prevp;
- 884:	00000717          	auipc	a4,0x0
- 888:	76a73e23          	sd	a0,1916(a4) # 1000 <freep>
+ 86e:	00000717          	auipc	a4,0x0
+ 872:	78a73923          	sd	a0,1938(a4) # 1000 <freep>
       return (void*)(p + 1);
- 88c:	01078513          	addi	a0,a5,16
+ 876:	01078513          	addi	a0,a5,16
       if((p = morecore(nunits)) == 0)
         return 0;
   }
 }
- 890:	70e2                	ld	ra,56(sp)
- 892:	7442                	ld	s0,48(sp)
- 894:	74a2                	ld	s1,40(sp)
- 896:	7902                	ld	s2,32(sp)
- 898:	69e2                	ld	s3,24(sp)
- 89a:	6a42                	ld	s4,16(sp)
- 89c:	6aa2                	ld	s5,8(sp)
- 89e:	6b02                	ld	s6,0(sp)
- 8a0:	6121                	addi	sp,sp,64
- 8a2:	8082                	ret
+ 87a:	70e2                	ld	ra,56(sp)
+ 87c:	7442                	ld	s0,48(sp)
+ 87e:	74a2                	ld	s1,40(sp)
+ 880:	7902                	ld	s2,32(sp)
+ 882:	69e2                	ld	s3,24(sp)
+ 884:	6a42                	ld	s4,16(sp)
+ 886:	6aa2                	ld	s5,8(sp)
+ 888:	6b02                	ld	s6,0(sp)
+ 88a:	6121                	addi	sp,sp,64
+ 88c:	8082                	ret
         prevp->s.ptr = p->s.ptr;
- 8a4:	6398                	ld	a4,0(a5)
- 8a6:	e118                	sd	a4,0(a0)
- 8a8:	bff1                	j	884 <malloc+0x88>
+ 88e:	6398                	ld	a4,0(a5)
+ 890:	e118                	sd	a4,0(a0)
+ 892:	bff1                	j	86e <malloc+0x88>
   hp->s.size = nu;
- 8aa:	01652423          	sw	s6,8(a0)
+ 894:	01652423          	sw	s6,8(a0)
   free((void*)(hp + 1));
- 8ae:	0541                	addi	a0,a0,16
- 8b0:	00000097          	auipc	ra,0x0
- 8b4:	eca080e7          	jalr	-310(ra) # 77a <free>
+ 898:	0541                	addi	a0,a0,16
+ 89a:	00000097          	auipc	ra,0x0
+ 89e:	eca080e7          	jalr	-310(ra) # 764 <free>
   return freep;
- 8b8:	00093503          	ld	a0,0(s2)
+ 8a2:	00093503          	ld	a0,0(s2)
       if((p = morecore(nunits)) == 0)
- 8bc:	d971                	beqz	a0,890 <malloc+0x94>
+ 8a6:	d971                	beqz	a0,87a <malloc+0x94>
   for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
- 8be:	611c                	ld	a5,0(a0)
+ 8a8:	611c                	ld	a5,0(a0)
     if(p->s.size >= nunits){
- 8c0:	4798                	lw	a4,8(a5)
- 8c2:	fa9775e3          	bgeu	a4,s1,86c <malloc+0x70>
+ 8aa:	4798                	lw	a4,8(a5)
+ 8ac:	fa9775e3          	bgeu	a4,s1,856 <malloc+0x70>
     if(p == freep)
- 8c6:	00093703          	ld	a4,0(s2)
- 8ca:	853e                	mv	a0,a5
- 8cc:	fef719e3          	bne	a4,a5,8be <malloc+0xc2>
+ 8b0:	00093703          	ld	a4,0(s2)
+ 8b4:	853e                	mv	a0,a5
+ 8b6:	fef719e3          	bne	a4,a5,8a8 <malloc+0xc2>
   p = sbrk(nu * sizeof(Header));
- 8d0:	8552                	mv	a0,s4
- 8d2:	00000097          	auipc	ra,0x0
- 8d6:	b70080e7          	jalr	-1168(ra) # 442 <sbrk>
+ 8ba:	8552                	mv	a0,s4
+ 8bc:	00000097          	auipc	ra,0x0
+ 8c0:	b70080e7          	jalr	-1168(ra) # 42c <sbrk>
   if(p == (char*)-1)
- 8da:	fd5518e3          	bne	a0,s5,8aa <malloc+0xae>
+ 8c4:	fd5518e3          	bne	a0,s5,894 <malloc+0xae>
         return 0;
- 8de:	4501                	li	a0,0
- 8e0:	bf45                	j	890 <malloc+0x94>
+ 8c8:	4501                	li	a0,0
+ 8ca:	bf45                	j	87a <malloc+0x94>
